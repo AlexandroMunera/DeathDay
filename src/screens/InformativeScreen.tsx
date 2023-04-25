@@ -8,7 +8,13 @@ import {
   Text,
 } from 'react-native';
 
-export default function InformativeScreen() {
+type InformativeScreenProps = {
+  navigation: any;
+};
+
+export default function InformativeScreen({
+  navigation,
+}: InformativeScreenProps) {
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -20,10 +26,20 @@ export default function InformativeScreen() {
           México, conmemorando la muerte como un elemento más de la vida y como
           una forma de recordar y honrar a los seres queridos.
         </Text>
-        <View style={styles.buttonContainer}>
-          <Pressable>
-            <Image source={require('../assets/sound.png')} />
-          </Pressable>
+        <View style={styles.footer}>
+          <View style={styles.buttonContainer}>
+            <Pressable>
+              <Image source={require('../assets/sound.png')} />
+            </Pressable>
+          </View>
+          <View style={styles.buttonContainer}>
+            <Pressable onPress={() => navigation.navigate('Home')}>
+              <Image
+                style={styles.enterIcon}
+                source={require('../assets/right-arrow.png')}
+              />
+            </Pressable>
+          </View>
         </View>
       </ImageBackground>
     </View>
@@ -37,7 +53,6 @@ const styles = StyleSheet.create({
   bgImage: {
     flex: 1,
     justifyContent: 'space-between',
-    alignItems: 'flex-end',
     padding: 30,
   },
   text: {
@@ -45,6 +60,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignSelf: 'flex-start',
     width: 200,
+  },
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  enterIcon: {
+    width: 25,
+    height: 25,
   },
   buttonContainer: {
     backgroundColor: 'black',
