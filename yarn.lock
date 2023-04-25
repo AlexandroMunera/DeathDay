@@ -5979,6 +5979,11 @@
     "react-freeze" "^1.0.0"
     "warn-once" "^0.1.0"
 
+"react-native-tip@^0.0.19":
+  "integrity" "sha512-+He2tcxFZCDuX1hh0Q2IJ8nHQ2YbhXA07KiJnuhgNWHNzPlMyE188I3i92iQ6AeVpDnYNxy7Y2Ek2IVzXFzP2A=="
+  "resolved" "https://registry.npmjs.org/react-native-tip/-/react-native-tip-0.0.19.tgz"
+  "version" "0.0.19"
+
 "react-native@*", "react-native@0.71.7":
   "integrity" "sha512-Id6iRLS581fJMFGbBl1jP5uSmjExtGOvw5Gvh7694zISXjsRAsFMmU+izs0pyCLqDBoHK7y4BT7WGPGw693nYw=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.71.7.tgz"

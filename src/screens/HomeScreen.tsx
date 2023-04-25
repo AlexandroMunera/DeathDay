@@ -1,6 +1,8 @@
 import React from 'react';
 import {ImageBackground, Text, StyleSheet, View, Image} from 'react-native';
 
+import {Tip} from 'react-native-tip';
+
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
@@ -9,7 +11,11 @@ export default function HomeScreen() {
         resizeMode="contain"
         style={styles.bgImage}>
         <View style={styles.header}>
-          <Image source={require('../assets/pointView.png')} />
+          <Tip
+            id={1}
+            body="Los altares son en honor a los muertos de la familia">
+            <Image source={require('../assets/pointView.png')} />
+          </Tip>
           <View style={styles.score}>
             <Text style={styles.scoreText}>200</Text>
             <Image
@@ -23,7 +29,12 @@ export default function HomeScreen() {
         </View>
         <View style={styles.center}>
           <Image source={require('../assets/pointView.png')} />
-          <Image source={require('../assets/pointView.png')} />
+
+          <Tip
+            id={2}
+            body="“Garbancera” sobrenombre para personas que negaban sus orígenes indígenas">
+            <Image source={require('../assets/pointView.png')} />
+          </Tip>
         </View>
         <View style={styles.footer}>
           <Image source={require('../assets/pointView.png')} />
