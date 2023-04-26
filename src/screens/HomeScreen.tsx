@@ -7,9 +7,8 @@ import {
   SafeAreaView,
   Image,
 } from 'react-native';
-import {ReactNativeZoomableView} from '@openspacelabs/react-native-zoomable-view';
-
 import {Tip} from 'react-native-tip';
+import {ReactNativeZoomableView} from '@openspacelabs/react-native-zoomable-view';
 
 export default function HomeScreen() {
   return (
@@ -19,7 +18,7 @@ export default function HomeScreen() {
         minZoom={1}
         zoomStep={0.3}
         initialZoom={1}>
-        <View style={{backgroundColor: 'blue', width: '100%', height: '100%'}}>
+        <View style={styles.bgImageContainer}>
           <ImageBackground
             resizeMode="cover"
             source={require('../assets/home.png')}
@@ -42,13 +41,22 @@ export default function HomeScreen() {
               <Image source={require('../assets/pointView.png')} />
             </View>
             <View style={styles.center}>
-              <Image source={require('../assets/pointView.png')} />
-
-              <Tip
-                id={2}
-                body="“Garbancera” sobrenombre para personas que negaban sus orígenes indígenas">
+              <View style={styles.centerPointsContainer}>
                 <Image source={require('../assets/pointView.png')} />
-              </Tip>
+
+                <Tip
+                  id={2}
+                  body="“Garbancera” sobrenombre para personas que negaban sus orígenes indígenas">
+                  <Image source={require('../assets/pointView.png')} />
+                </Tip>
+              </View>
+              <View style={styles.zoomContainer}>
+                <Text style={styles.zoomItem}>+</Text>
+                <Text
+                  style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>
+                  -
+                </Text>
+              </View>
             </View>
             <View style={styles.footer}>
               <Image source={require('../assets/pointView.png')} />
@@ -66,6 +74,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'black',
   },
+  bgImageContainer: {backgroundColor: 'blue', width: '100%', height: '100%'},
   bgImage: {
     flex: 1,
     paddingHorizontal: 60,
@@ -109,6 +118,21 @@ const styles = StyleSheet.create({
     gap: 70,
     marginBottom: 85,
   },
+  centerPointsContainer: {flexDirection: 'row', gap: 65},
+  zoomContainer: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: 'grey',
+    borderRadius: 50,
+    position: 'absolute',
+    right: -40,
+    top: -40,
+    height: 100,
+    width: 30,
+    backgroundColor: '#110115',
+  },
+  zoomItem: {color: 'white', fontSize: 20, fontWeight: 'bold'},
   footer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
