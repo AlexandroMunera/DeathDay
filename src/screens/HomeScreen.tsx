@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createRef} from 'react';
 import {
   ImageBackground,
   Text,
@@ -6,18 +6,21 @@ import {
   View,
   SafeAreaView,
   Image,
+  Pressable,
 } from 'react-native';
 import {Tip} from 'react-native-tip';
 import {ReactNativeZoomableView} from '@openspacelabs/react-native-zoomable-view';
 
 export default function HomeScreen() {
+  const zoomableViewRef = createRef<ReactNativeZoomableView>();
+
   return (
     <SafeAreaView style={styles.container}>
       <ReactNativeZoomableView
-        maxZoom={1.3}
-        minZoom={1}
-        zoomStep={0.3}
-        initialZoom={1}>
+        ref={zoomableViewRef}
+        initialZoom={1}
+        maxZoom={1.1}
+        minZoom={1}>
         <View style={styles.bgImageContainer}>
           <ImageBackground
             resizeMode="cover"
@@ -51,11 +54,15 @@ export default function HomeScreen() {
                 </Tip>
               </View>
               <View style={styles.zoomContainer}>
-                <Text style={styles.zoomItem}>+</Text>
-                <Text
-                  style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>
-                  -
-                </Text>
+                <Pressable
+                  onPress={() => {
+                    zoomableViewRef.current!.zoomBy(0.1);
+                  }}>
+                  <Text style={styles.zoomItem}>+</Text>
+                </Pressable>
+                <Pressable onPress={() => zoomableViewRef.current!.zoomTo(1)}>
+                  <Text style={styles.zoomItem}>-</Text>
+                </Pressable>
               </View>
             </View>
             <View style={styles.footer}>
