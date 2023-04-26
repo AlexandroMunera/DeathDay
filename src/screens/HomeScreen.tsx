@@ -1,53 +1,70 @@
 import React from 'react';
-import {ImageBackground, Text, StyleSheet, View, Image} from 'react-native';
+import {
+  ImageBackground,
+  Text,
+  StyleSheet,
+  View,
+  SafeAreaView,
+  Image,
+} from 'react-native';
+import {ReactNativeZoomableView} from '@openspacelabs/react-native-zoomable-view';
 
 import {Tip} from 'react-native-tip';
 
 export default function HomeScreen() {
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        source={require('../assets/home.png')}
-        resizeMode="contain"
-        style={styles.bgImage}>
-        <View style={styles.header}>
-          <Tip
-            id={1}
-            body="Los altares son en honor a los muertos de la familia">
-            <Image source={require('../assets/pointView.png')} />
-          </Tip>
-          <View style={styles.score}>
-            <Text style={styles.scoreText}>200</Text>
-            <Image
-              style={styles.scoreIcon}
-              source={require('../assets/scoreIcon.png')}
-            />
-          </View>
-        </View>
-        <View style={styles.afterHeader}>
-          <Image source={require('../assets/pointView.png')} />
-        </View>
-        <View style={styles.center}>
-          <Image source={require('../assets/pointView.png')} />
+    <SafeAreaView style={styles.container}>
+      <ReactNativeZoomableView
+        maxZoom={1.3}
+        minZoom={1}
+        zoomStep={0.3}
+        initialZoom={1}>
+        <View style={{backgroundColor: 'blue', width: '100%', height: '100%'}}>
+          <ImageBackground
+            resizeMode="cover"
+            source={require('../assets/home.png')}
+            style={styles.bgImage}>
+            <View style={styles.header}>
+              <Tip
+                id={1}
+                body="Los altares son en honor a los muertos de la familia">
+                <Image source={require('../assets/pointView.png')} />
+              </Tip>
+              <View style={styles.score}>
+                <Text style={styles.scoreText}>200</Text>
+                <Image
+                  style={styles.scoreIcon}
+                  source={require('../assets/scoreIcon.png')}
+                />
+              </View>
+            </View>
+            <View style={styles.afterHeader}>
+              <Image source={require('../assets/pointView.png')} />
+            </View>
+            <View style={styles.center}>
+              <Image source={require('../assets/pointView.png')} />
 
-          <Tip
-            id={2}
-            body="“Garbancera” sobrenombre para personas que negaban sus orígenes indígenas">
-            <Image source={require('../assets/pointView.png')} />
-          </Tip>
+              <Tip
+                id={2}
+                body="“Garbancera” sobrenombre para personas que negaban sus orígenes indígenas">
+                <Image source={require('../assets/pointView.png')} />
+              </Tip>
+            </View>
+            <View style={styles.footer}>
+              <Image source={require('../assets/pointView.png')} />
+              <Image source={require('../assets/pointView.png')} />
+            </View>
+          </ImageBackground>
         </View>
-        <View style={styles.footer}>
-          <Image source={require('../assets/pointView.png')} />
-          <Image source={require('../assets/pointView.png')} />
-        </View>
-      </ImageBackground>
-    </View>
+      </ReactNativeZoomableView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'black',
   },
   bgImage: {
     flex: 1,
@@ -58,7 +75,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    marginBottom: 30,
+    marginBottom: 20,
   },
   score: {
     flexDirection: 'row',
