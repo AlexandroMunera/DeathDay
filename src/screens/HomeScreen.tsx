@@ -23,7 +23,6 @@ export default function HomeScreen() {
         minZoom={1}>
         <View style={styles.bgImageContainer}>
           <ImageBackground
-            resizeMode="cover"
             source={require('../assets/home.png')}
             style={styles.bgImage}>
             <View style={styles.header}>

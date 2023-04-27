@@ -25,7 +25,7 @@ export default function InitialScreen({navigation}: InitialScreenProps) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#450D41',
+    backgroundColor: '#150015',
   },
   bgImage: {
     flex: 1,

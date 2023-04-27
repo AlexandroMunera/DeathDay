@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Image,
   View,
@@ -7,6 +7,7 @@ import {
   Pressable,
   Text,
 } from 'react-native';
+import SoundPlayer from 'react-native-sound-player';
 
 type InformativeScreenProps = {
   navigation: any;
@@ -15,11 +16,25 @@ type InformativeScreenProps = {
 export default function InformativeScreen({
   navigation,
 }: InformativeScreenProps) {
+  const [isPlayingSound, setIsPlayingSound] = useState(false);
+
+  const playSound = () => {
+    try {
+      setIsPlayingSound(!isPlayingSound);
+
+      !isPlayingSound === true
+        ? SoundPlayer.playSoundFile('informative', 'mp3')
+        : SoundPlayer.stop();
+    } catch (e) {
+      console.log('cannot play the sound file', e);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <ImageBackground
         source={require('../assets/informative.png')}
-        resizeMode="contain"
+        resizeMode="cover"
         style={styles.bgImage}>
         <Text style={styles.text}>
           El Día de Muertos es una de las celebraciones más importantes de
@@ -28,8 +43,19 @@ export default function InformativeScreen({
         </Text>
         <View style={styles.footer}>
           <View style={styles.buttonContainer}>
-            <Pressable>
-              <Image source={require('../assets/sound.png')} />
+            <Pressable onPress={playSound}>
+              {isPlayingSound && (
+                <Image
+                  style={styles.icon}
+                  source={require('../assets/sound.png')}
+                />
+              )}
+              {!isPlayingSound && (
+                <Image
+                  style={styles.icon}
+                  source={require('../assets/sound-mute.png')}
+                />
+              )}
             </Pressable>
           </View>
           <View style={styles.buttonContainer}>
@@ -75,5 +101,10 @@ const styles = StyleSheet.create({
     borderColor: 'grey',
     borderRadius: 50,
     padding: 10,
+    justifyContent: 'center',
+  },
+  icon: {
+    height: 20,
+    width: 30,
   },
 });
