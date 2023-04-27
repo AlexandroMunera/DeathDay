@@ -23,7 +23,7 @@ export default function InformativeScreen({
       setIsPlayingSound(!isPlayingSound);
 
       !isPlayingSound === true
-        ? SoundPlayer.playSoundFile('informative', 'mp3')
+        ? SoundPlayer.playSoundFile('sound', 'mp3')
         : SoundPlayer.stop();
     } catch (e) {
       console.log('cannot play the sound file', e);

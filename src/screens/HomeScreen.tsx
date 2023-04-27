@@ -1,4 +1,4 @@
-import React, {createRef} from 'react';
+import React, {createRef, useState} from 'react';
 import {
   ImageBackground,
   Text,
@@ -13,6 +13,17 @@ import {ReactNativeZoomableView} from '@openspacelabs/react-native-zoomable-view
 
 export default function HomeScreen() {
   const zoomableViewRef = createRef<ReactNativeZoomableView>();
+  const [points, setPoints] = useState(0);
+  const [pointsViewed, setPointsViewed] = useState<string[]>([]);
+
+  const addPoints = (id: string) => {
+    if (pointsViewed.some(x => x === id)) {
+      return;
+    }
+
+    setPoints(prev => prev + 100);
+    setPointsViewed(prev => [...prev, id]);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -27,12 +38,17 @@ export default function HomeScreen() {
             style={styles.bgImage}>
             <View style={styles.header}>
               <Tip
-                id={1}
-                body="Los altares son en honor a los muertos de la familia">
-                <Image source={require('../assets/pointView.png')} />
+                id={'1'}
+                body="Los altares son en honor a los muertos de la familia"
+                onPressItem={() => addPoints('1')}>
+                {pointsViewed.some(x => x === '1') ? (
+                  <Image source={require('../assets/pointViewClicked.png')} />
+                ) : (
+                  <Image source={require('../assets/pointView.png')} />
+                )}
               </Tip>
               <View style={styles.score}>
-                <Text style={styles.scoreText}>200</Text>
+                <Text style={styles.scoreText}>{points}</Text>
                 <Image
                   style={styles.scoreIcon}
                   source={require('../assets/scoreIcon.png')}
@@ -47,9 +63,14 @@ export default function HomeScreen() {
                 <Image source={require('../assets/pointView.png')} />
 
                 <Tip
-                  id={2}
-                  body="“Garbancera” sobrenombre para personas que negaban sus orígenes indígenas">
-                  <Image source={require('../assets/pointView.png')} />
+                  id={'2'}
+                  body="“Garbancera” sobrenombre para personas que negaban sus orígenes indígenas"
+                  onPressItem={() => addPoints('2')}>
+                  {pointsViewed.some(x => x === '2') ? (
+                    <Image source={require('../assets/pointViewClicked.png')} />
+                  ) : (
+                    <Image source={require('../assets/pointView.png')} />
+                  )}
                 </Tip>
               </View>
               <View style={styles.zoomContainer}>
